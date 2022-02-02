@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 // function toValidPackageName(projectName) {
 //   return projectName
 //     .trim()
