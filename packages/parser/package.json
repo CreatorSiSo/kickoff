@@ -1,0 +1,19 @@
+{
+  "name": "@kickoff/parser",
+  "version": "0.1.0",
+  "main": "index.ts",
+  "scripts": {
+    "dev": "nodemon"
+  },
+  "keywords": [],
+  "author": "CreatorSiSo",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^17.0.14",
+    "nodemon": "^2.0.15"
+  },
+  "dependencies": {
+    "ts-node": "^10.4.0"
+  },
+  "description": ""
+}
