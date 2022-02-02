@@ -97,10 +97,10 @@ const expr = '{ioduf:{idasf:{sduigfuisdf:{dsifgh}}}}';
 
 function parseSync(string: string) {
   // Remove all html comments
-  string = string.replace(/(?=<!--)([\s\S]*?)-->/g, '');
+  // string = string.replace(/(?=<!--)([\s\S]*?)-->/g, '');
 
   const returnArray: {
-    path: RegExpMatchArray | null;
+    path: RegExpMatchArray | any[];
     start: number;
     end: number;
   }[] = [];
@@ -110,30 +110,57 @@ function parseSync(string: string) {
     // Parsing expressions
     // Start | Folder | End | Folder | End
     //   {   |  app   | :{  |  path  |  }
-    if (string[index - 1] === '{' && !(string[index + 1] === '}')) {
+    if (string[index] === '{' && !(string[index + 1] === '}')) {
       const endIndex = string.indexOf('}', index);
 
       returnArray.push({
-        path: string
-          // Start | Folder | End | Folder | End
-          //       |  app   | :{  |  path  |
+        path:
+          string
+            // Start | Folder | End | Folder | End
+            //   {   |  app   | :{  |  path  |
 
-          .slice(index, endIndex)
-          // Start | Folder | End | Folder | End
-          //       |  app   | :{  |  path  |
+            .slice(index, endIndex)
+            // Start | Folder | End | Folder | End
+            //       |  app   | :{  |  path  |
 
-          .match(/(?<=^)([\s\S]*?)(?=[:{]|$)/g),
+            .match(/(?<={)([\s\S]*?)(?=:{|$)/g) ?? [],
         //   Start | Folder | End | Folder | End
         //         |  app   |     |  path  |
 
         start: index,
-        end: endIndex,
+        end: endIndex + 1,
       });
+
+      index = endIndex;
     }
   }
 
   return returnArray;
 }
 
-console.log(parseSync(html));
-console.log(parseSync(expr));
+declare interface String {
+  splice(start: number, end: number, replacement: string): string;
+}
+
+String.prototype.splice = function (start, end, replacement) {
+  return this.slice(0, start) + replacement + this.slice(end);
+};
+
+// const splitAt = (start: number, end: number) => (string: string) =>
+//   [string.slice(0, start), string.slice(end)];
+
+console.log(
+  parseSync(html).map((path) => {
+    return html.splice(path.start, path.end, path.path?.join('/'));
+  })
+);
+
+// console.log(parseSync(expr));
+
+// console.time('test');
+// console.timeLog('test');
+// for (let index = 0; index < 99999; index++) {
+//   parseSync(html);
+//   parseSync(expr);
+// }
+// console.timeEnd('test');

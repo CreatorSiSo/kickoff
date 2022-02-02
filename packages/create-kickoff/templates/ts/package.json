@@ -1,0 +1,24 @@
+{
+  "name": "kickoff-template-ts",
+  "version": "0.1.0",
+  "contributors": [
+    {
+      "name": "Simon Sommer",
+      "email": "simon.sommer@webit.de",
+      "url": "https://github.com/CreatorSiSo"
+    }
+  ],
+  "scripts": {
+    "dev": "vite --host --open",
+    "build:dev": "tsc && vite build --mode=dev",
+    "build:prod": "tsc && vite build --mode=prod",
+    "build": "vite build --mode=prod",
+    "preview": "vite preview --host --open"
+  },
+  "devDependencies": {
+    "@types/node": "^17.0.14",
+    "concurrently": "^7.0.0",
+    "typescript": "^4.4.4",
+    "vite": "^2.7.2"
+  }
+}

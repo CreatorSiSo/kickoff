@@ -1,18 +1,20 @@
 {
   "name": "kickoff",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "workspaces": [
-    "packages/parser"
+  "license": "MIT",
+  "contributors": [
+    {
+      "name": "CreatorSiSo",
+      "email": "creatorsisohd@gmail.com",
+      "url": "https://github.com/CreatorSiSo"
+    }
   ],
-  "dependencies": {
-    "ts-node": "^10.4.0"
-  }
+  "private": true,
+  "type": "module",
+  "scripts": {},
+  "workspaces": [
+    "packages/parser",
+    "packages/create-kickoff"
+  ]
 }
